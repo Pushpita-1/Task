@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Browse Jobs - CareerLink</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f5f7f5;
+            font-family: Arial, sans-serif;
+            color: #19332d;
+        }
+
+        
+        .container {
+            width: 95%;
+            margin: 10px auto;
+            background-color: white;
+            border: 1px solid #dce3df;
+            border-radius: 15px;
+            min-height: 530px;
+        }
+
+        
+        .navbar {
+            height: 62px;
+            border-bottom: 1px solid #dce3df;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: Georgia, serif;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 55px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #718078;
+            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 7px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #edf3f0;
+            color: #328363;
+        }
+
+        .nav-links a.active {
+            color: #19332d;
+            font-weight: bold;
+        }
+
+        .profile {
+            margin-left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #edf3f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #49766b;
+        }
+
+        .user-name {
+            font-size: 14px;
+            color: #19332d;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 34px 32px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #dce3df;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #19332d;
+            background-color: #fbfcfb;
+        }
+
+        .search-input::placeholder {
+            color: #a3aea7;
+        }
+
+        .filter-select {
+            padding: 12px 18px;
+            border: 1px solid #dce3df;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #19332d;
+            background-color: white;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .search-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            background-color: #295445;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background-color: #1f4235;
+        }
+
+        /* Job List */
+        .job-list {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .job-card {
+            display: flex;
+            align-items: center;
+            border: 1px solid #dce3df;
+            border-radius: 12px;
+            padding: 20px 24px;
+            gap: 18px;
+        }
+
+        .job-marker {
+            width: 20px;
+            border-top: 3px dashed #d9a441;
+            flex-shrink: 0;
+        }
+
+        .job-info {
+            flex: 1;
+        }
+
+        .job-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 0 8px;
+            color: #19332d;
+        }
+
+        .job-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 13px;
+            color: #718078;
+        }
+
+        .tag {
+            background-color: #e3f3eb;
+            color: #27815e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .job-salary {
+            font-size: 14px;
+            color: #19332d;
+        }
+
+        .view-details {
+            background-color: #e3f3eb;
+            color: #27815e;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .view-details:hover {
+            background-color: #d3ebdf;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .search-bar {
+                flex-wrap: wrap;
+            }
+
+            .search-input {
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 10px 15px;
+                height: auto;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 10px;
+                font-size: 12px;
+                margin-left: 0;
+            }
+
+            .profile {
+                margin-left: 0;
+            }
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .container {
+                width: 98%;
+            }
+
+            .job-card {
+                flex-wrap: wrap;
+            }
+
+            .job-marker {
+                display: none;
+            }
+
+            .view-details {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Navbar -->
+        <div class="navbar">
+
+            <div class="logo">
+                <img src="interlocking_rings.png" alt="CareerLink Logo">
+                CareerLink
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Dashboard</a>
+                <a href="#" class="active">Browse Jobs</a>
+                <a href="my-applications.html">My Applications</a>
+                <a href="profile.html">Profile</a>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">P</div>
+                <span class="user-name">Pushpita</span>
+            </div>
+
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="main">
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search job title or keyword...">
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Web Development</option>
+                    <option>Networking</option>
+                </select>
+                <select class="filter-select">
+                    <option>All Locations</option>
+                    <option>Dhaka</option>
+                    <option>Chattogram</option>
+                    <option>Remote</option>
+                </select>
+                <button class="search-btn">Search</button>
+            </div>
+
+            <!-- Job List -->
+            <div class="job-list">
+
+                <div class="job-card">
+                    <div class="job-marker"></div>
+                    <div class="job-info">
+                        <div class="job-title">Junior PHP Developer</div>
+                        <div class="job-meta">
+                            <span class="tag">Web Development</span>
+                            <span>Nexbridge Ltd.</span>
+                            <span>Dhaka</span>
+                            <span class="job-salary">৳30,000-40,000</span>
+                        </div>
+                    </div>
+                    <a href="job-details.html" class="view-details">View Details</a>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-marker"></div>
+                    <div class="job-info">
+                        <div class="job-title">Frontend Engineer (React)</div>
+                        <div class="job-meta">
+                            <span class="tag">Web Development</span>
+                            <span>Studio Loom</span>
+                            <span>Remote</span>
+                            <span class="job-salary">৳45,000-60,000</span>
+                        </div>
+                    </div>
+                    <a href="job-details.html" class="view-details">View Details</a>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-marker"></div>
+                    <div class="job-info">
+                        <div class="job-title">Network Support Intern</div>
+                        <div class="job-meta">
+                            <span class="tag">Networking</span>
+                            <span>ConnectIT</span>
+                            <span>Chattogram</span>
+                            <span class="job-salary">৳15,000</span>
+                        </div>
+                    </div>
+                   <a href="job-details.html" class="view-details">View Details</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

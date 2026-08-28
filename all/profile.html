@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - CareerLink</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f5f7f5;
+            font-family: Arial, sans-serif;
+            color: #19332d;
+        }
+
+        
+        .container {
+            width: 95%;
+            margin: 10px auto;
+            background-color: white;
+            border: 1px solid #dce3df;
+            border-radius: 15px;
+            min-height: 530px;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: #a3aea7;
+            padding: 14px 30px 0;
+        }
+
+        .navbar {
+            height: 62px;
+            border-bottom: 1px solid #dce3df;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: Georgia, serif;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 55px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #718078;
+            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 7px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #edf3f0;
+            color: #328363;
+        }
+
+        .nav-links a.active {
+            color: #19332d;
+            font-weight: bold;
+        }
+
+        .profile {
+            margin-left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #edf3f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #49766b;
+        }
+
+        .user-name {
+            font-size: 14px;
+            color: #19332d;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 30px 32px 34px;
+        }
+
+        .back-link {
+            display: inline-block;
+            text-decoration: none;
+            color: #718078;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .back-link:hover {
+            color: #328363;
+        }
+
+        .profile-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* Left column - form */
+        .profile-form {
+            flex: 1;
+        }
+
+        .field-group {
+            margin-bottom: 20px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 13px;
+            color: #718078;
+            margin-bottom: 8px;
+        }
+
+        .field-input,
+        .field-textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dce3df;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            color: #19332d;
+            background-color: #fbfcfb;
+        }
+
+        .field-input::placeholder,
+        .field-textarea::placeholder {
+            color: #a3aea7;
+        }
+
+        .field-textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .save-btn {
+            padding: 13px 26px;
+            border: none;
+            border-radius: 8px;
+            background-color: #295445;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            background-color: #1f4235;
+        }
+
+        /* Right column - resume + danger zone */
+        .side-box {
+            width: 320px;
+            flex-shrink: 0;
+            border: 1px solid #dce3df;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .side-heading {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 0 6px;
+        }
+
+        .side-text {
+            font-size: 13px;
+            color: #718078;
+            margin: 0 0 14px;
+        }
+
+        .side-btn {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 7px;
+            background-color: #e3f3eb;
+            color: #27815e;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .file-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dce3df;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #45534d;
+    background-color: #fbfcfb;
+    margin-bottom: 4px;
+}
+
+        .side-btn:hover {
+            background-color: #d3ebdf;
+        }
+
+        .danger-heading {
+            color: #d54c40;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 26px 0 6px;
+        }
+
+        .delete-btn {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 7px;
+            background-color: #fde8e5;
+            color: #d54c40;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: #fad7d2;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .profile-layout {
+                flex-direction: column;
+            }
+
+            .side-box {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 10px 15px;
+                height: auto;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 10px;
+                font-size: 12px;
+                margin-left: 0;
+            }
+
+            .profile {
+                margin-left: 0;
+            }
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .container {
+                width: 98%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="breadcrumb">Job Seeker / Profile</div>
+
+        <!-- Navbar -->
+        <div class="navbar">
+
+            <div class="logo">
+                <img src="interlocking_rings.png" alt="CareerLink Logo">
+                CareerLink
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Dashboard</a>
+                <a href="browse-jobs.html">Browse Jobs</a>
+                <a href="my-applications.html">My Applications</a>
+                <a href="profile.html" class="active">Profile</a>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">P</div>
+                <span class="user-name">Pushpita</span>
+            </div>
+
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="main">
+
+            <a href="index.html" class="back-link">&larr; Back to Dashboard</a>
+
+            <div class="profile-layout">
+
+                <!-- Profile Form -->
+                <div class="profile-form">
+
+                    <div class="field-group">
+                        <label class="field-label">Full Name</label>
+                        <input type="text" class="field-input" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Email</label>
+                        <input type="email" class="field-input" placeholder="Enter your email">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Phone</label>
+                        <input type="text" class="field-input" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Education</label>
+                        <textarea class="field-textarea" placeholder="Your education background"></textarea>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Experience</label>
+                        <textarea class="field-textarea" placeholder="Your work experience"></textarea>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Skills</label>
+                        <input type="text" class="field-input" >
+                    </div>
+
+                    <button class="save-btn">Save Changes</button>
+
+                </div>
+
+              
+                <div class="side-box">
+
+                    <h3 class="side-heading">Resume</h3>
+                    <input type="file" class="file-input" accept=".pdf,.doc,.docx">
+
+                    <h3 class="danger-heading">Danger Zone</h3>
+                    <p class="side-text">Permanently delete your account and all application history.</p>
+                    <button class="delete-btn">Delete Account</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

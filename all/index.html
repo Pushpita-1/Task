@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerLink Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f5f7f5;
+            font-family: Arial, sans-serif;
+            color: #19332d;
+        }
+
+        
+        .container {
+            width: 95%;
+            margin: 10px auto;
+            background-color: white;
+            border: 1px solid #dce3df;
+            border-radius: 15px;
+            min-height: 530px;
+        }
+
+        
+        .navbar {
+            height: 62px;
+            border-bottom: 1px solid #dce3df;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Georgia, serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+ .nav-links {
+            display: flex;
+            gap: 55px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #718078;
+            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 7px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #edf3f0;
+            color: #328363;
+        }
+
+        .nav-links a.active {
+            color: #19332d;
+            font-weight: bold;
+        }
+
+        .profile {
+            margin-left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #edf3f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #49766b;
+        }
+
+        .user-name {
+            font-size: 14px;
+            color: #19332d;
+        }
+
+       
+        .main {
+            padding: 34px 32px;
+        }
+
+        .welcome h1 {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            margin: 0 0 5px;
+        }
+
+        .welcome p {
+            margin: 0;
+            color: #718078;
+            font-size: 14px;
+        }
+
+       
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            width: 25%;
+            height: 90px;
+            border: 1px solid #dce3df;
+            border-radius: 10px;
+            padding: 15px 20px;
+        }
+
+        .number {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+
+        .label {
+            color: #718078;
+            font-size: 13px;
+        }
+
+        .pending .number {
+            color: #c28b20;
+        }
+
+        .accepted .number {
+            color: #328363;
+        }
+
+        .rejected .number {
+            color: #d94c3e;
+        }
+
+        
+        .recent {
+            margin-top: 34px;
+        }
+
+        .recent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .recent-header h2 {
+            font-family: Georgia, serif;
+            font-size: 17px;
+            margin: 0;
+        }
+
+        .view-btn {
+            background-color: white;
+            border: 1px solid #dce3df;
+            border-radius: 7px;
+            padding: 7px 13px;
+            color: #718078;
+            cursor: pointer;
+        }
+
+       
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+        }
+
+        th {
+            text-align: left;
+            color: #718078;
+            font-size: 11px;
+            padding: 10px 14px;
+            border-bottom: 1px solid #dce3df;
+        }
+
+        td {
+            padding: 14px;
+            font-size: 14px;
+            border-bottom: 1px solid #dce3df;
+        }
+
+      
+        .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .accepted-status {
+            color: #27815e;
+            background-color: #e3f3eb;
+        }
+
+        .pending-status {
+            color: #c38a19;
+            background-color: #fff1d9;
+        }
+
+        .rejected-status {
+            color: #d54c40;
+            background-color: #fde8e5;
+        }
+
+              
+        @media (max-width: 800px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .stats {
+                flex-wrap: wrap;
+            }
+
+            .stat-box {
+                width: 48%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 10px 15px;
+                height: auto;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 10px;
+                font-size: 12px;
+            }
+
+            .profile {
+                margin-left: 0;
+            }
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .stat-box {
+                width: 100%;
+            }
+
+            .container {
+                width: 98%;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        
+        <div class="navbar">
+
+           <div class="logo">
+    <img src="interlocking_rings.png" alt="CareerLink Logo">
+    CareerLink
+</div>
+
+            <div class="nav-links">
+                <a href="index.html" class="active">Dashboard</a>
+                <a href="browse-jobs.html">Browse Jobs</a>
+              <a href="my-applications.html">My Applications</a>
+               <a href="profile.html">Profile</a>
+            </div>
+
+            <div class="profile">
+        <div class="avatar">P</div>
+    <span class="user-name">Pushpita</span>
+        </div>
+
+        </div>
+
+
+        
+        <div class="main">
+
+          
+            <div class="welcome">
+                <h1>Welcome back, Arafat</h1>
+                <p>Here's where your applications stand.</p>
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat-box">
+                    <div class="number">12</div>
+                    <div class="label">Total Applications</div>
+                </div>
+
+                <div class="stat-box pending">
+                    <div class="number">5</div>
+                    <div class="label">Pending</div>
+                </div>
+
+                <div class="stat-box accepted">
+                    <div class="number">4</div>
+                    <div class="label">Accepted</div>
+                </div>
+
+                <div class="stat-box rejected">
+                    <div class="number">3</div>
+                    <div class="label">Rejected</div>
+                </div>
+
+            </div>
+
+
+            
+            <div class="recent">
+
+                <div class="recent-header">
+                    <h2>Recent Applications</h2>
+
+                    <button class="view-btn">
+                        View all
+                    </button>
+                </div>
+
+
+                
+                <table>
+
+                    <tr>
+                        <th>JOB TITLE</th>
+                        <th>COMPANY</th>
+                        <th>APPLIED</th>
+                        <th>STATUS</th>
+                    </tr>
+
+                    <tr>
+                        <td>Junior PHP Developer</td>
+                        <td>Nexbridge Ltd.</td>
+                        <td>Aug 12</td>
+                        <td>
+                            <span class="status accepted-status">
+                                Accepted
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Frontend Engineer</td>
+                        <td>Studio Loom</td>
+                        <td>Aug 15</td>
+                        <td>
+                            <span class="status pending-status">
+                                Pending
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Network Support Intern</td>
+                        <td>ConnectIT</td>
+                        <td>Aug 09</td>
+                        <td>
+                            <span class="status rejected-status">
+                                Rejected
+                            </span>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
